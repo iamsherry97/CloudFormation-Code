@@ -212,37 +212,37 @@ Outputs:
     Description: Public Subnet 1 ID
     Value: !Ref MyPublicSubnet1
     Export:
-      Name: !Sub "Subnet-Pub1-${AWS::StackName}"
+      Name: Subnet-Pub1
   PublicSubnet2:
     Description: Public Subnet 2 ID
     Value: !Ref MyPublicSubnet2
     Export:
-      Name: !Sub "Subnet-Pub2-${AWS::StackName}"
+      Name: Subnet-Pub2
   PrivateSubnet1:
     Description: Private Subnet 1 ID
     Value: !Ref MyPrivateSubnet1
     Export:
-      Name: !Sub "Subnet-Pri1-${AWS::StackName}"
+      Name: Subnet-Pri1
   PrivateSubnet2:
     Description: Private Subnet 2 ID
     Value: !Ref MyPrivateSubnet2
     Export:
-      Name: !Sub "Subnet-Pri2-${AWS::StackName}"
+      Name: Subnet-Pri2
   SGAppLB:
     Description: SG for ALB
     Value: !Ref SgALB
     Export:
-      Name: !Sub "SG-ALB${AWS::StackName}"
+      Name: SG-ALB
   SgWebserver:
     Description: SG for EC2
     Value: !Ref SgWebserver
     Export:
-      Name: !Sub "SG-WebServer${AWS::StackName}"
+      Name: SG-WebServer
   SgMySQL:
     Description: SG forMySQL
     Value: !Ref SgMySQL
     Export:
-      Name: !Sub "SG-MySQL${AWS::StackName}"
+      Name: SG-MySQL
   PublicSubnetList:
     Description: List of Public Subnets
     Value: !Join 

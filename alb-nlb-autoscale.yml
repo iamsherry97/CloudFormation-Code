@@ -62,10 +62,10 @@ Resources:
       Scheme: "internet-facing"
       IpAddressType: "ipv4"
       Subnets: 
-        - !ImportValue Subnet-Pub1-WebServerVPC
-        - !ImportValue Subnet-Pub2-WebServerVPC
+        - !ImportValue Subnet-Pub1
+        - !ImportValue Subnet-Pub2
       SecurityGroups:
-        - !ImportValue SG-ALBWebServerVPC
+        - !ImportValue SG-ALB
       Tags:
         - Key: "Name"
           Value: !Sub "MyALB-${AWS::StackName}"
@@ -88,8 +88,8 @@ Resources:
       Scheme: "internal"
       IpAddressType: "ipv4"
       Subnets:
-        - !ImportValue Subnet-Pri1-WebServerVPC
-        - !ImportValue Subnet-Pri2-WebServerVPC
+        - !ImportValue Subnet-Pri1
+        - !ImportValue Subnet-Pri2
       Tags:
         - Key: "Name"
           Value: !Sub "MyNLB-${AWS::StackName}"
@@ -112,7 +112,7 @@ Resources:
       InstanceType: "t2.micro"
       KeyName: !Ref KeyName
       SecurityGroups: 
-        - !ImportValue SG-WebServerWebServerVPC
+        - !ImportValue SG-WebServer
       UserData:
         Fn::Base64:
           !Sub |
@@ -151,9 +151,9 @@ Resources:
         - !Ref MyTgALB
       LaunchConfigurationName: !Ref MyLaunchconfigweb
       VPCZoneIdentifier:
-        - !ImportValue Subnet-Pri1-WebServerVPC
-        - !ImportValue Subnet-Pri2-WebServerVPC
-    DependsOn: MyLaunchconfigweb
+        - !ImportValue Subnet-Pri1
+        - !ImportValue Subnet-Pri2
+    DependsOn: MyLaunchconfigsql
 #----------------------------------------------------------------------------------------------------------------------#
   MyLaunchconfigsql:
     Type: AWS::AutoScaling::LaunchConfiguration
@@ -163,7 +163,7 @@ Resources:
       InstanceType: "t2.micro"
       KeyName: !Ref KeyName
       SecurityGroups: 
-        - !ImportValue SG-MySQLWebServerVPC
+        - !ImportValue SG-MySQL
       UserData:
         Fn::Base64:
           !Sub |
@@ -192,8 +192,8 @@ Resources:
         - !Ref MyTgNLB
       LaunchConfigurationName: !Ref MyLaunchconfigsql
       VPCZoneIdentifier:
-        - !ImportValue Subnet-Pri1-WebServerVPC
-        - !ImportValue Subnet-Pri2-WebServerVPC
+        - !ImportValue Subnet-Pri1
+        - !ImportValue Subnet-Pri2
 
 
 Outputs:
